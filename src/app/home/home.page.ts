@@ -39,29 +39,29 @@ export class HomePage {
       .then( barcodeData => {
         this.scannedData = barcodeData.text;
         console.log(this.scannedData);
-        this.reserva.readTodoById(this.scannedData).subscribe((salida) => {
-          //console.log(salida.data().comida);
-          if(salida.data() && salida.data().fecha){
-            this.comidacart= {
-              fecha : salida.data().fecha,
-              hora : salida.data().hora,
-              comida : salida.data().comida,
-              userId : salida.data().userId,
-              comentario :salida.data().comentario
+        try{
+          this.reserva.readTodoById(this.scannedData).subscribe((salida) => {
+            if (salida.data() && salida.data().fecha) {
+              this.comidacart = {
+                fecha: salida.data().fecha,
+                hora: salida.data().hora,
+                comida: salida.data().comida,
+                userId: salida.data().userId,
+                comentario: salida.data().comentario
+              };
+              this.ocultar = true;
+              this.reserva.deleteTodo(this.scannedData).then((salida) => {
+                console.log(salida);
+                this.ui.presentToast('Reserva Eliminada de la base de datos', 2000, 'success');
+              });
+              this.ui.presentToast('Reserva Eliminada de la base de datos', 2000, 'success');
+            } else {
+              this.ui.presentToast('Esta Reserva ya estaba eliminada', 2000, 'primary');
             }
-            this.ocultar=true;
-            /* this.reserva.deleteTodo(this.scannedData).then((salida) => {
-              console.log(salida);
-              this.ui.presentToast('Reserva Eliminada de la base de datos',2000,'success');
-            }); */ 
-            this.ui.presentToast('Reserva Eliminada de la base de datos',2000,'success');
-          }else{
-            this.ui.presentToast('Esta Reserva ya estaba eliminada',2000,'primary');
-          } 
-         },error=>{
-          console.log(error+'Cargar fallido');
-          this.ui.presentToast('Esta Reserva ya estaba eliminada',2000,'primary');
-        });
+          });
+        }catch{
+          this.ui.presentToast('No se corresponde a una Reserva',2000,'danger');
+        }
     });
   }
 
