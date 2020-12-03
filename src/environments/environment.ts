@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  //variable de configuracion de firebase para poder conectar y realizar el crud
   firebaseConfig : {
     apiKey: "",
     authDomain: "",

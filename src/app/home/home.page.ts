@@ -18,7 +18,6 @@ export class HomePage {
     userId : "",
     comentario :""
   };
-  private email: string;
   ocultar:boolean=false;
   scannedData: string;
   barcodeScannerOptions: BarcodeScannerOptions;
@@ -33,6 +32,10 @@ export class HomePage {
     };
   }
 
+  /**
+   * Funcion que abre la camara como escaner de qr, al leerlo recupera de firebase los datos de esa reserva
+   * porque el qr contiene el id y seguidamente lo elimina de firebase indicandolo todo con toast
+   */
   async scanBar() {
     this.ocultar=false;
     await this.barcodeScanner.scan()
