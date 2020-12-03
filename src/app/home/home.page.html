@@ -1,20 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Scaneador
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h1>Click en el Boton para Escanear</h1>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button color="primary" (click)="scanBar()">
+    Escanear QR
+  </ion-button>
+
+    <div >
+      <ion-card *ngIf="ocultar">
+        <ion-label class="ion-padding">
+          <h2><strong>{{email}}</strong></h2>
+          <p>Fecha: {{comidacart.fecha}}</p>
+          <p>Hora: {{comidacart.hora}}</p>
+          <p>Comida: {{comidacart.comida}}</p>
+          <p>Comentario: {{comidacart.comentario}}</p>
+        </ion-label>
+      </ion-card>
+    </div>
 </ion-content>
