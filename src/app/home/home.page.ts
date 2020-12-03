@@ -54,7 +54,6 @@ export class HomePage {
                 console.log(salida);
                 this.ui.presentToast('Reserva Eliminada de la base de datos', 2000, 'success');
               });
-              this.ui.presentToast('Reserva Eliminada de la base de datos', 2000, 'success');
             } else {
               this.ui.presentToast('Esta Reserva ya estaba eliminada', 2000, 'primary');
             }
