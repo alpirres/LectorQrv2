@@ -18,11 +18,6 @@ export class ReservaService {
     this.myCollection=fireStore.collection<any>(environment.coleccion);
   }
 
-  getUser(){
-     let user = firebase.default.auth().currentUser;
-     return user;
-  }
-
    /**
    * 
    */

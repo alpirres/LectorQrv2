@@ -39,7 +39,6 @@ export class HomePage {
       .then( barcodeData => {
         this.scannedData = barcodeData.text;
         console.log(this.scannedData);
-        let user = this.reserva.getUser();
         this.reserva.readTodoById(this.scannedData).subscribe((salida) => {
           //console.log(salida.data().comida);
           this.comidacart= {
@@ -48,12 +47,6 @@ export class HomePage {
             comida : salida.data().comida,
             userId : salida.data().userId,
             comentario :salida.data().comentario
-          }
-          console.log(this.comidacart.userId);
-          if (user != null && user.uid==this.comidacart.userId) {
-             this.email = user.email;
-          }else{
-            this.email="";
           }
           this.ocultar=true;
           /* this.reserva.deleteTodo(this.scannedData).then((salida) => {
@@ -65,10 +58,10 @@ export class HomePage {
           console.log(error+'Cargar fallido');
           this.ui.presentToast('Esta Reserva ya estaba eliminada',2000,'primary');
         });
+        if (this.ocultar==false){
+          this.ui.presentToast('Esta Reserva ya estaba eliminada',2000,'primary');
+        }
     });
-    if (this.ocultar==false){
-      this.ui.presentToast('Esta Reserva ya estaba eliminada',2000,'primary');
-    }
   }
 
   
